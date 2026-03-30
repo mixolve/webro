@@ -1,0 +1,22 @@
+{
+  "version": 4,
+  "configurations": [
+    {
+      "name": "macOS",
+      "compilerPath": "/usr/bin/clang++",
+      "intelliSenseMode": "macos-clang-arm64",
+      "cppStandard": "c++17",
+      "cStandard": "c17",
+      "includePath": [
+        "${workspaceFolder}/Source",
+        "${workspaceFolder}/JuceLibraryCode",
+        "${workspaceFolder}/../JUCE/modules"
+      ],
+      "defines": [
+        "JUCE_WEB_BROWSER=1",
+        "JUCE_STRICT_REFCOUNTEDPOINTER=1",
+        "JUCE_VST3_CAN_REPLACE_VST2=0"
+      ]
+    }
+  ]
+}
