@@ -1,2 +1,10 @@
 build/
 .DS_Store
+artifacts/
+*.log
+.idea/
+.cache/
+compile_commands.json
+CMakeUserPresets.json
+*.swp
+*.swo
