@@ -30,7 +30,7 @@ endif()
 
 add_subdirectory("${JUCE_DIR}" JUCE)
 
-set(WEBRO_ARTIFACTS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/artifacts")
+set(WEBRO_DIST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/dist")
 set(WEBRO_GLOBAL_PLUGIN_DIR "/Library/Audio/Plug-Ins/ALL")
 set_property(GLOBAL PROPERTY JUCE_COPY_PLUGIN_AFTER_BUILD FALSE)
 
@@ -91,11 +91,11 @@ target_link_libraries(webro
         juce::juce_recommended_warning_flags)
 
 add_custom_command(TARGET webro_VST3 POST_BUILD
-    COMMAND "${CMAKE_COMMAND}" -E rm -rf "${WEBRO_ARTIFACTS_DIR}/VST3/webro.vst3"
-    COMMAND "${CMAKE_COMMAND}" -E make_directory "${WEBRO_ARTIFACTS_DIR}/VST3"
+    COMMAND "${CMAKE_COMMAND}" -E rm -rf "${WEBRO_DIST_DIR}/webro.vst3"
+    COMMAND "${CMAKE_COMMAND}" -E make_directory "${WEBRO_DIST_DIR}"
     COMMAND "${CMAKE_COMMAND}" -E copy_directory
             "$<TARGET_BUNDLE_DIR:webro_VST3>"
-            "${WEBRO_ARTIFACTS_DIR}/VST3/webro.vst3"
+            "${WEBRO_DIST_DIR}/webro.vst3"
     COMMAND "${CMAKE_COMMAND}" -E rm -rf "${WEBRO_GLOBAL_PLUGIN_DIR}/webro.vst3"
     COMMAND "${CMAKE_COMMAND}" -E make_directory "${WEBRO_GLOBAL_PLUGIN_DIR}"
     COMMAND "${CMAKE_COMMAND}" -E copy_directory
