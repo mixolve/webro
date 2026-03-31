@@ -8,3 +8,4 @@ compile_commands.json
 CMakeUserPresets.json
 *.swp
 *.swo
+conventions.md
