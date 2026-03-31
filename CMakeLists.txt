@@ -6,9 +6,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_OSX_DEPLOYMENT_TARGET "11.0" CACHE STRING "Minimum macOS deployment version")
 
-# Xcode 26.3/macOS 26.2 SDK references Foundation/NSGarbageCollector.h from
-# Foundation.h but does not ship that header. Expose a shim through CPATH so
-# JUCE's nested juceaide configure/build steps inherit it automatically.
 set(WEBRO_SHIM_DIR "${CMAKE_CURRENT_SOURCE_DIR}/cmake/shims")
 
 if(DEFINED ENV{CPATH} AND NOT "$ENV{CPATH}" STREQUAL "")
