@@ -1,6 +1,5 @@
 build/
 .DS_Store
-artifacts/
 *.log
 .idea/
 .vscode/
@@ -21,3 +20,5 @@ out/
 *.swp
 *.swo
 conventions.md
+webro.vst3/
+webro-*.zip
