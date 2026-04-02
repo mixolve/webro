@@ -4,6 +4,7 @@ artifacts/
 *.log
 .idea/
 .vscode/
+.githooks/
 .cache/
 .vscode-test/
 .history/
