@@ -1,7 +1,7 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-WebroAudioProcessor::WebroAudioProcessor()
+WbeAudioProcessor::WbeAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
      : AudioProcessor (BusesProperties()
                      #if ! JucePlugin_IsMidiEffect
@@ -15,16 +15,16 @@ WebroAudioProcessor::WebroAudioProcessor()
 {
 }
 
-WebroAudioProcessor::~WebroAudioProcessor()
+WbeAudioProcessor::~WbeAudioProcessor()
 {
 }
 
-const juce::String WebroAudioProcessor::getName() const
+const juce::String WbeAudioProcessor::getName() const
 {
     return JucePlugin_Name;
 }
 
-bool WebroAudioProcessor::acceptsMidi() const
+bool WbeAudioProcessor::acceptsMidi() const
 {
    #if JucePlugin_WantsMidiInput
     return true;
@@ -33,7 +33,7 @@ bool WebroAudioProcessor::acceptsMidi() const
    #endif
 }
 
-bool WebroAudioProcessor::producesMidi() const
+bool WbeAudioProcessor::producesMidi() const
 {
    #if JucePlugin_ProducesMidiOutput
     return true;
@@ -42,7 +42,7 @@ bool WebroAudioProcessor::producesMidi() const
    #endif
 }
 
-bool WebroAudioProcessor::isMidiEffect() const
+bool WbeAudioProcessor::isMidiEffect() const
 {
    #if JucePlugin_IsMidiEffect
     return true;
@@ -51,48 +51,48 @@ bool WebroAudioProcessor::isMidiEffect() const
    #endif
 }
 
-double WebroAudioProcessor::getTailLengthSeconds() const
+double WbeAudioProcessor::getTailLengthSeconds() const
 {
     return 0.0;
 }
 
-int WebroAudioProcessor::getNumPrograms()
+int WbeAudioProcessor::getNumPrograms()
 {
     return 1;
 }
 
-int WebroAudioProcessor::getCurrentProgram()
+int WbeAudioProcessor::getCurrentProgram()
 {
     return 0;
 }
 
-void WebroAudioProcessor::setCurrentProgram (int index)
+void WbeAudioProcessor::setCurrentProgram (int index)
 {
     juce::ignoreUnused (index);
 }
 
-const juce::String WebroAudioProcessor::getProgramName (int index)
+const juce::String WbeAudioProcessor::getProgramName (int index)
 {
     juce::ignoreUnused (index);
     return {};
 }
 
-void WebroAudioProcessor::changeProgramName (int index, const juce::String& newName)
+void WbeAudioProcessor::changeProgramName (int index, const juce::String& newName)
 {
     juce::ignoreUnused (index, newName);
 }
 
-void WebroAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void WbeAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     juce::ignoreUnused (sampleRate, samplesPerBlock);
 }
 
-void WebroAudioProcessor::releaseResources()
+void WbeAudioProcessor::releaseResources()
 {
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-bool WebroAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
+bool WbeAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
 {
    #if JucePlugin_IsMidiEffect
     juce::ignoreUnused (layouts);
@@ -112,7 +112,7 @@ bool WebroAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) co
 }
 #endif
 
-void WebroAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
+void WbeAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
                                         juce::MidiBuffer& midiMessages)
 {
     juce::ignoreUnused (midiMessages);
@@ -123,26 +123,26 @@ void WebroAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
         buffer.clear (channel, 0, buffer.getNumSamples());
 }
 
-bool WebroAudioProcessor::hasEditor() const
+bool WbeAudioProcessor::hasEditor() const
 {
     return true;
 }
 
-juce::AudioProcessorEditor* WebroAudioProcessor::createEditor()
+juce::AudioProcessorEditor* WbeAudioProcessor::createEditor()
 {
-    return new WebroAudioProcessorEditor (*this);
+    return new WbeAudioProcessorEditor (*this);
 }
 
-void WebroAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
+void WbeAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
 {
-    juce::ValueTree state ("WebroState");
+    juce::ValueTree state ("WbeState");
     state.setProperty ("url", currentURL, nullptr);
 
     if (auto xml = state.createXml())
         copyXmlToBinary (*xml, destData);
 }
 
-void WebroAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
+void WbeAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     if (auto xmlState = getXmlFromBinary (data, sizeInBytes))
     {
@@ -163,5 +163,5 @@ void WebroAudioProcessor::setStateInformation (const void* data, int sizeInBytes
 
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new WebroAudioProcessor();
+    return new WbeAudioProcessor();
 }

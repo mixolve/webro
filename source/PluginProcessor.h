@@ -2,12 +2,12 @@
 
 #include <JuceHeader.h>
 
-class WebroAudioProcessor  : public juce::AudioProcessor,
+class WbeAudioProcessor  : public juce::AudioProcessor,
                              public juce::ChangeBroadcaster
 {
 public:
-    WebroAudioProcessor();
-    ~WebroAudioProcessor() override;
+    WbeAudioProcessor();
+    ~WbeAudioProcessor() override;
 
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
@@ -54,5 +54,5 @@ public:
 private:
     juce::String currentURL {};
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WebroAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WbeAudioProcessor)
 };

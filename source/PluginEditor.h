@@ -86,20 +86,20 @@ private:
     void paint (juce::Graphics&) override {}
 };
 
-class WebroAudioProcessorEditor  : public juce::AudioProcessorEditor,
+class WbeAudioProcessorEditor  : public juce::AudioProcessorEditor,
                                    public juce::ChangeListener,
                                    private juce::Button::Listener,
                                    private juce::TextEditor::Listener
 {
 public:
-    explicit WebroAudioProcessorEditor (WebroAudioProcessor&);
-    ~WebroAudioProcessorEditor() override;
+    explicit WbeAudioProcessorEditor (WbeAudioProcessor&);
+    ~WbeAudioProcessorEditor() override;
 
     void resized() override;
     void changeListenerCallback (juce::ChangeBroadcaster* source) override;
 
 private:
-    WebroAudioProcessor& audioProcessor;
+    WbeAudioProcessor& audioProcessor;
 
     juce::WebBrowserComponent browser;
     UrlEditor urlEditor;
@@ -123,5 +123,5 @@ private:
     void updateBarVisibility();
     void submitURL (const juce::String& urlText);
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WebroAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WbeAudioProcessorEditor)
 };

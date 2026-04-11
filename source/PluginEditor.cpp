@@ -1,6 +1,6 @@
 #include "PluginEditor.h"
 #include "PluginProcessor.h"
-#include "WebroBinaryData.h"
+#include "WbeBinaryData.h"
 
 namespace
 {
@@ -16,7 +16,7 @@ constexpr int leftResizeStrip = 3;
 constexpr int bottomResizeStrip = 8;
 }
 
-WebroAudioProcessorEditor::WebroAudioProcessorEditor (WebroAudioProcessor& p)
+WbeAudioProcessorEditor::WbeAudioProcessorEditor (WbeAudioProcessor& p)
     : AudioProcessorEditor (&p),
       audioProcessor (p)
 {
@@ -27,8 +27,8 @@ WebroAudioProcessorEditor::WebroAudioProcessorEditor (WebroAudioProcessor& p)
     setResizeLimits (1, 1, 10000, 10000);
     setSize (1000, 700);
 
-    guiTypeface = juce::Typeface::createSystemTypefaceFor (WebroBinaryData::SometypeMonoRegular_ttf,
-                                                           WebroBinaryData::SometypeMonoRegular_ttfSize);
+    guiTypeface = juce::Typeface::createSystemTypefaceFor (WbeBinaryData::SometypeMonoRegular_ttf,
+                                                           WbeBinaryData::SometypeMonoRegular_ttfSize);
     squareLook.typeface = guiTypeface;
     squareLook.fontHeight = guiFontSize;
 
@@ -106,7 +106,7 @@ WebroAudioProcessorEditor::WebroAudioProcessorEditor (WebroAudioProcessor& p)
     updateBarVisibility();
 }
 
-WebroAudioProcessorEditor::~WebroAudioProcessorEditor()
+WbeAudioProcessorEditor::~WbeAudioProcessorEditor()
 {
     audioProcessor.removeChangeListener (this);
 
@@ -119,7 +119,7 @@ WebroAudioProcessorEditor::~WebroAudioProcessorEditor()
     }
 }
 
-void WebroAudioProcessorEditor::resized()
+void WbeAudioProcessorEditor::resized()
 {
     auto area = getLocalBounds();
     auto bottomBar = area.removeFromBottom (bottomBarHeight);
@@ -149,13 +149,13 @@ void WebroAudioProcessorEditor::resized()
         bottomResizeHandle->setBounds (0, getHeight() - bottomResizeStrip, getWidth(), bottomResizeStrip);
 }
 
-void WebroAudioProcessorEditor::changeListenerCallback (juce::ChangeBroadcaster* source)
+void WbeAudioProcessorEditor::changeListenerCallback (juce::ChangeBroadcaster* source)
 {
     if (source == &audioProcessor)
         refreshFromProcessor();
 }
 
-void WebroAudioProcessorEditor::refreshFromProcessor()
+void WbeAudioProcessorEditor::refreshFromProcessor()
 {
     auto url = audioProcessor.getCurrentURL();
     urlEditor.setText (url, juce::dontSendNotification);
@@ -179,7 +179,7 @@ void WebroAudioProcessorEditor::refreshFromProcessor()
     }
 }
 
-void WebroAudioProcessorEditor::updateBarVisibility()
+void WbeAudioProcessorEditor::updateBarVisibility()
 {
     urlEditor.setVisible (true);
     backButton.setVisible (true);
@@ -192,7 +192,7 @@ void WebroAudioProcessorEditor::updateBarVisibility()
     resized();
 }
 
-void WebroAudioProcessorEditor::buttonClicked (juce::Button* button)
+void WbeAudioProcessorEditor::buttonClicked (juce::Button* button)
 {
     urlEditor.giveAwayKeyboardFocus();
 
@@ -204,7 +204,7 @@ void WebroAudioProcessorEditor::buttonClicked (juce::Button* button)
         browser.goForward();
 }
 
-void WebroAudioProcessorEditor::textEditorFocusLost (juce::TextEditor& editor)
+void WbeAudioProcessorEditor::textEditorFocusLost (juce::TextEditor& editor)
 {
     if (&editor != &urlEditor)
         return;
@@ -212,13 +212,13 @@ void WebroAudioProcessorEditor::textEditorFocusLost (juce::TextEditor& editor)
     urlEditor.onExitEdit();
 }
 
-void WebroAudioProcessorEditor::textEditorReturnKeyPressed (juce::TextEditor& editor)
+void WbeAudioProcessorEditor::textEditorReturnKeyPressed (juce::TextEditor& editor)
 {
     if (&editor == &urlEditor)
         submitURL (urlEditor.getText());
 }
 
-void WebroAudioProcessorEditor::submitURL (const juce::String& enteredText)
+void WbeAudioProcessorEditor::submitURL (const juce::String& enteredText)
 {
     auto urlText = enteredText.trim();
 
@@ -237,7 +237,7 @@ void WebroAudioProcessorEditor::submitURL (const juce::String& enteredText)
     audioProcessor.setCurrentURL (urlText);
 }
 
-void WebroAudioProcessorEditor::goHome()
+void WbeAudioProcessorEditor::goHome()
 {
     showingHomeScreen = true;
     lastLoadedURL.clear();
