@@ -95,6 +95,7 @@ public:
     explicit WbeAudioProcessorEditor (WbeAudioProcessor&);
     ~WbeAudioProcessorEditor() override;
 
+    void paint (juce::Graphics& g) override;
     void resized() override;
     void changeListenerCallback (juce::ChangeBroadcaster* source) override;
 

@@ -20,7 +20,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 option(WBE_USE_LOCAL_JUCE "Use a local JUCE checkout via JUCE_DIR" OFF)
 
-set(WBE_SHIM_DIR "${CMAKE_CURRENT_SOURCE_DIR}/cmake/apple-sdk-shims")
+set(WBE_SHIM_DIR "${CMAKE_CURRENT_SOURCE_DIR}/source/apple-sdk-shims")
 
 if(APPLE)
     set(CMAKE_OSX_DEPLOYMENT_TARGET "11.0" CACHE STRING "Minimum macOS deployment version" FORCE)

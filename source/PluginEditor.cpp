@@ -119,6 +119,11 @@ WbeAudioProcessorEditor::~WbeAudioProcessorEditor()
     }
 }
 
+void WbeAudioProcessorEditor::paint (juce::Graphics& g)
+{
+    g.fillAll (juce::Colour::fromRGB (51, 51, 51));
+}
+
 void WbeAudioProcessorEditor::resized()
 {
     auto area = getLocalBounds();
