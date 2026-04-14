@@ -20,18 +20,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 option(WBE_USE_LOCAL_JUCE "Use a local JUCE checkout via JUCE_DIR" OFF)
 
-set(WBE_SHIM_DIR "${CMAKE_CURRENT_SOURCE_DIR}/source/apple-sdk-shims")
-
 if(APPLE)
     set(CMAKE_OSX_DEPLOYMENT_TARGET "11.0" CACHE STRING "Minimum macOS deployment version" FORCE)
-
-    if(DEFINED ENV{CPATH} AND NOT "$ENV{CPATH}" STREQUAL "")
-        set(ENV{CPATH} "${WBE_SHIM_DIR}:$ENV{CPATH}")
-    else()
-        set(ENV{CPATH} "${WBE_SHIM_DIR}")
-    endif()
-
-    add_compile_options("-I${WBE_SHIM_DIR}")
 endif()
 
 if(APPLE)
@@ -148,13 +138,6 @@ target_link_libraries(wbe
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags
         juce::juce_recommended_warning_flags)
-
-if(APPLE)
-    target_include_directories(wbe
-        PRIVATE
-            "${WBE_SHIM_DIR}"
-    )
-endif()
 
 if(WBE_ENABLE_VST3_DEPLOY AND NOT WBE_DEPLOY_DIR STREQUAL "")
     add_custom_command(TARGET wbe_VST3 POST_BUILD
