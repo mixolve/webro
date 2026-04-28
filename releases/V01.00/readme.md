@@ -1,0 +1,1 @@
+wbe-V01.00-macos.zip contains .vst3
